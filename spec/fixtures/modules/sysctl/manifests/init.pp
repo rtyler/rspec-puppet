@@ -4,6 +4,11 @@ class sysctl::common ($test_param = 'yes') {
     refreshonly => true,
     returns     => [0, 2],
   }
+
+  package {
+    'sysctl' :
+      ensure => present;
+  }
 }
 
 define sysctl($value) {

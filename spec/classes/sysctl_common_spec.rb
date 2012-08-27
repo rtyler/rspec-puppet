@@ -3,6 +3,9 @@ require 'spec_helper'
 describe 'sysctl::common' do
   it { should contain_exec('sysctl/reload') \
     .with_command('/sbin/sysctl -p /etc/sysctl.conf').with_returns([0, 2]) }
+
+  it { should contain_package('sysctl').with_only(:ensure => 'present') }
+
   it { should_not create_augeas('foo') }
   describe 'when using with to specify a hash of parameters' do
     it 'should fail if the parameter is not contained in the resource' do
